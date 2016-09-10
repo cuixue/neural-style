@@ -53,7 +53,7 @@ def stylize(network, initial, content, styles, iterations,
             for layer in STYLE_LAYERS:
                 features = net[layer].eval(feed_dict={image: style_pre})
                 features = np.reshape(features, (-1, features.shape[3]))
-                gram = np.matmul(features.T, features) / features.size
+                gram = tf.matmul(features.T, features) / features.size
                 style_features[i][layer] = gram
 
     # make stylized image using backpropogation
